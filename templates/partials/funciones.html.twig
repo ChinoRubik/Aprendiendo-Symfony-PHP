@@ -1,0 +1,12 @@
+    <h2> FUNCIONES</h2>
+    <p>{{mensaje}}</p>
+    {# FUNCIONES PREDIFINIDAS #}
+    {{min([1,2,3,6,4,6,10,15245,54,121,2])}} ---
+    {{max([1,2,3,6,4,6,10,15245,54,121,2])}} ---
+    {{random(avez)}} ---
+
+    {# DEL CERO AL 100 SALTANDO 5 NUMEROS EN CADA ITERACION #}
+    {% for i in range(0,100,5) %}
+        {{i}}
+    {% endfor %}
+

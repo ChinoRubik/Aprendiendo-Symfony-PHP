@@ -1,0 +1,11 @@
+<h1>Crea un animal</h1>
+
+{% for item in app.session.flashbag().get('message') %}
+    <strong>{{item}}</strong>
+{% endfor %}
+
+
+
+{{form_start(form)}}
+{{form_widget(form)}}
+{{form_end(form)}}

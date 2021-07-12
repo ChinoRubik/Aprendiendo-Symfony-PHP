@@ -1,0 +1,81 @@
+{% extends 'layaout/primera.html.twig' %}
+
+{% block title %} Animales {% endblock %}
+
+{% block header %}
+    <h1> {{ title }}</h1>
+{% endblock %}
+
+{% block content %}
+    
+   {# ASI SE CREA UN COMENTARION TWIG #}
+    <h2> Tu nombre es: {{ name }} y tus apellidos son {{lastname}}</h2>
+
+    {# Para crear una variable #}
+    {% set perro="Pastor aleman" %}
+    <p>{{perro}}</p>
+
+    {# Lo que hace es hacerme un var_dump de cualquier cosa #}
+    {{ dump(animales) }}
+    <p>{{animales[0]}}</p>
+
+    {# Arrays asociativos #}
+    {{ dump(avez)}}
+    <p>El color de la ave es {{avez['color'] ~ ' y es una ' ~ avez['tipo']}}</p>
+
+    {# Condicional #}
+
+    {% if avez.tipo == 'paloma'%}
+        <h4> OYE SI HAY PALOMAS</h4>
+    {% else %}
+        <h4> NO HAY NINGUNA PALOMA :(</h4>
+    {% endif %}
+
+
+    {% if animales|length >= 0 %}
+        <h3> ANIMALES</h3>
+        <ul>
+            {% for i in animales %}
+                    <p>{{i}}</p>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% for i in 0..9 %}
+        <p>2x{{i+1}} = {{(2*(i+1))}}</p>
+    {% endfor %}
+
+
+    {% if avez.color starts with 'g' %}
+        <h2> El color de la paloma empieza por G</h2>
+    {% endif %}
+    
+    {% if avez.color ends with 's' %}
+        <h2> El color de la paloma termina con S</h2>
+    {% endif %}
+
+    {{ include('partials/funciones.html.twig', {'mensaje': 'Pasando mensaje por un parametro'}) }}
+
+    <h2> FILTRO</h2>
+    <p>La longitud es: {{animales|length}}</p>
+    {% set email = '        chino@chino.com         '%}
+    {{dump(email)}}
+    {{dump(email|trim|upper)}}
+
+    <hr>
+    <h2> EXTENSIONES PERSONALIZADAS</h2>
+    {# SE UTILIZA COMO UN SERVICIO LAS EXTENSIONES, ESTAS SE ENCUENTRAR EN src/Twig ADEMAS PARA QUE FUNCIONEN SE TIENEN QUE AREGAR COMO SERVICIO EN config/services.yaml
+ 
+    App\Twig\:
+        resource: '../src/Twig/'
+        tags: ['Twig.extension']
+        
+    DE ESTA FORMA SE UTILIZA Y SE CONFIGURA EN EL SERVICIO   
+     #}
+
+    {# SE UTILIZA EL FILTRO RAW PARA QUE AGARRE EL FORMATO DE MI HTML  #}
+    {{multiplicar(5)|raw}}
+    {{1021|multiplicar|raw}}
+    {{multiplicar(15465456)|raw}}
+
+{% endblock %}

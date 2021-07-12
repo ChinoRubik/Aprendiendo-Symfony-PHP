@@ -1,0 +1,45 @@
+index:
+    path: /
+    controller: App\Controller\HomingController::index
+
+animales:
+    path: /animales/{nombre}/{apellidos}
+    controller: App\Controller\HomingController::animales
+
+    #Valor de default por si nombre no es puesto por la URL
+    defaults: {nombre: '¡Tu nombre va aqui!', apellidos: '¡Tus apellidos van aqui!'}
+    methods: [GET]
+    requirements:
+
+        #Poniendo restriccion al parametro de la URL
+        nombre: '[a-zA-Z ]+'
+        apellidos: '[a-zA-Z ]+'
+
+redirigir:
+    path: /redirigir
+    controller: App\Controller\HomingController::redirigir
+
+animal_index:
+    path: /animal/index
+    controller: App\Controller\AnimalController::index
+
+animal_save:
+    path: /animal/save
+    controller: App\Controller\AnimalController::save
+
+animal_get:
+    path: /animal/{id}
+    controller: App\Controller\AnimalController::findAnimal
+
+animal_update:
+    path: /animal/update/{id}
+    controller: App\Controller\AnimalController::updateAnimal
+
+animal_delete:
+    path: /animal/delete/{id}
+    controller: App\Controller\AnimalController::deleteAnimal
+
+
+animal_create:
+    path: /crear-animal
+    controller: App\Controller\AnimalController::crearAnimal
